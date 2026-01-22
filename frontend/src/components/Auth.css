@@ -1,0 +1,360 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #010000;
+  /* Fallback */
+  background: radial-gradient(circle at center, #052355 0%, #010000 100%);
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.auth-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 550px;
+  background: transparent;
+  overflow: hidden;
+}
+
+.auth-form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 1;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(241, 234, 234, 0.5);
+}
+
+.auth-form .animation {
+  transition: 0.7s ease;
+}
+
+/* Register Form Default State */
+.auth-form.Register .animation {
+  transform: translateX(120%);
+  transition: 0.7s ease;
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.auth-wrapper .auth-form.Register .animation {
+  transform: translateX(0%);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.auth-wrapper.active .auth-form.Register .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+/* Login Form Default State */
+.auth-form.Login .animation {
+  transform: translateX(0%);
+  opacity: 1;
+  filter: blur(0px);
+}
+
+.auth-wrapper .auth-form.Login .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.auth-wrapper.active .auth-form.Login .animation {
+  transform: translateX(0%);
+  opacity: 1;
+  filter: blur(0px);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.welcome-section {
+  flex: 1;
+  background: linear-gradient(135deg, #a65606 0%, #d9995a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-form.Login .welcome-section {
+  align-items: flex-start;
+  padding-left: 120px;
+}
+
+.auth-form.Login .welcome-section h1,
+.auth-form.Login .welcome-section p {
+  text-align: left;
+}
+
+.auth-form.Login .welcome-section p {
+  max-width: 280px;
+}
+
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 550px 150px;
+  border-color: transparent transparent #052355 transparent;
+  z-index: 0;
+}
+
+.auth-form.Login .welcome-section::before {
+  right: auto;
+  left: -1px;
+  border-width: 550px 150px 0 0;
+  border-color: #052355 transparent transparent transparent;
+}
+
+.welcome-section h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 10;
+  max-width: 300px;
+}
+
+.form-section {
+  flex: 1;
+  background: #052355;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 50px;
+  position: relative;
+}
+
+.form-section h2 {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.form-section form {
+  width: 100%;
+  max-width: 350px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 45px 15px 15px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  opacity: 0.8;
+  transition: 0.3s;
+  user-select: none;
+  z-index: 10;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.input-group .icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  opacity: 0.6;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #a65606 0%, #d9995a 100%);
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(212, 163, 115, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+}
+
+.message.success {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+  color: #4caf50;
+}
+
+.message.error {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(244, 67, 54, 0.5);
+  color: #f44336;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-group input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle-text {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 25px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.toggle-text span {
+  color: #d4a373;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.toggle-text span:hover {
+  color: #e5b88a;
+}
+
+/* Animation Variables */
+.auth-form.Register .welcome-section {
+  --i: 0;
+}
+
+.auth-form.Register .form-section {
+  --i: 1;
+}
+
+.auth-form.Login .form-section {
+  --i: 0;
+}
+
+.auth-form.Login .welcome-section {
+  --i: 1;
+}
+
+/* Register and Login positioning */
+.auth-form.Register {
+  z-index: 2;
+}
+
+.auth-form.Login {
+  z-index: 1;
+}
+
+.auth-wrapper.active .auth-form.Register {
+  z-index: 1;
+}
+
+.auth-wrapper.active .auth-form.Login {
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .auth-wrapper {
+    height: auto;
+    min-height: 600px;
+  }
+
+  .auth-form {
+    flex-direction: column;
+  }
+
+  .welcome-section,
+  .form-section {
+    flex: 1;
+    padding: 40px 30px;
+  }
+
+  .welcome-section::before {
+    border-width: 200px 500px 0 0;
+  }
+
+  .welcome-section h1 {
+    font-size: 36px;
+  }
+
+  .form-section h2 {
+    font-size: 28px;
+  }
+}
