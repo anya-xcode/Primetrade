@@ -20,16 +20,40 @@ prisma.$connect()
 
 // Basic Route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the API' });
+  res.json({ message: 'Welcome to the API', version: '1.0.0' });
 });
 
-// Routes
+// API v1 Routes
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const taskRoutes = require('./routes/tasks');
+
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/tasks', taskRoutes);
+
+// Legacy routes (for backward compatibility)
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
-// Add your routes here
-// Example: app.use('/api/users', require('./routes/users'));
+app.use('/api/tasks', taskRoutes);
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
+});
 
 // Graceful shutdown
 process.on('SIGINT', async () => {

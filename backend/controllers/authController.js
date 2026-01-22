@@ -56,7 +56,8 @@ exports.register = async (req, res) => {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
   } catch (error) {
@@ -120,7 +121,8 @@ exports.login = async (req, res) => {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
   } catch (error) {
@@ -141,6 +143,7 @@ exports.getProfile = async (req, res) => {
         id: true,
         username: true,
         email: true,
+        role: true,
         createdAt: true
       }
     });
