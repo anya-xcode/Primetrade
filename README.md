@@ -1,4 +1,4 @@
-# Sem4 Project
+# Primetrade
 
 Full-stack authentication application with React and Node.js.
 
