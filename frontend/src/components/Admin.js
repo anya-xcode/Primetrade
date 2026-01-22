@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { adminAPI } from '../services/api';
 import './Admin.css';
@@ -9,11 +9,7 @@ const Admin = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchAllUsers();
-  }, []);
-
-  const fetchAllUsers = async () => {
+  const fetchAllUsers = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
@@ -30,7 +26,29 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    // Check if user is logged in and is admin
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (!token) {
+      navigate('/');
+      return;
+    }
+    
+    if (user) {
+      const userData = JSON.parse(user);
+      if (userData.role !== 'admin') {
+        setError('Access denied. Admin privileges required.');
+        setLoading(false);
+        return;
+      }
+    }
+    
+    fetchAllUsers();
+  }, [navigate, fetchAllUsers]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);

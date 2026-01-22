@@ -97,6 +97,9 @@ const Profile = () => {
           
           <div className="profile-actions">
             <button onClick={() => navigate('/tasks')} className="tasks-btn">My Tasks</button>
+            {user?.role === 'admin' && (
+              <button onClick={() => navigate('/admin')} className="admin-btn">Admin Panel</button>
+            )}
             <button className="edit-btn">Edit Profile</button>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </div>
