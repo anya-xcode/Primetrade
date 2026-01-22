@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const prisma = require('./prisma/prisma');
@@ -14,17 +13,10 @@ app.use(cors());
 app.use(express.json({ limit: '5mb' }));
 app.use(express.urlencoded({ extended: true, limit: '5mb' }));
 
-// MongoDB Connection (Mongoose - optional, you can use Prisma instead)
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sem4project';
-
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('✅ MongoDB Connected Successfully (Mongoose)'))
-  .catch((err) => console.error('❌ MongoDB Connection Error:', err));
-
 // Test Prisma Connection
 prisma.$connect()
-  .then(() => console.log('✅ Prisma Connected Successfully'))
-  .catch((err) => console.error('❌ Prisma Connection Error:', err));
+  .then(() => console.log('Prisma Connected Successfully'))
+  .catch((err) => console.error('Prisma Connection Error:', err));
 
 // Basic Route
 app.get('/', (req, res) => {
@@ -42,7 +34,6 @@ app.use('/api/admin', adminRoutes);
 // Graceful shutdown
 process.on('SIGINT', async () => {
   await prisma.$disconnect();
-  await mongoose.connection.close();
   process.exit(0);
 });
 
