@@ -12,15 +12,15 @@ Full-stack REST API with Authentication, Role-Based Access Control, and Task Man
 
 ## Features
 
-- ✅ User Registration & Login with JWT Authentication
-- ✅ Password Hashing with bcrypt
-- ✅ Role-Based Access Control (User vs Admin)
-- ✅ Task CRUD Operations (Create, Read, Update, Delete)
-- ✅ Protected Routes (Frontend & Backend)
-- ✅ API Versioning (v1)
-- ✅ Input Validation & Sanitization
-- ✅ Error Handling with proper HTTP status codes
-- ✅ Postman API Documentation
+- User Registration & Login with JWT Authentication
+- Password Hashing with bcrypt
+-  Role-Based Access Control (User vs Admin)
+-  Task CRUD Operations (Create, Read, Update, Delete)
+- Protected Routes (Frontend & Backend)
+- API Versioning (v1)
+- Input Validation & Sanitization
+-  Error Handling with proper HTTP status codes
+-  Postman API Documentation
 
 ## Quick Start
 
