@@ -110,7 +110,6 @@ http://localhost:5000/api/v1
 - `sortBy`: Sort field (title, status, priority, dueDate, createdAt)
 - `order`: Sort order (asc, desc)
 
-### Postman Collection
 
 Import the Postman collection from `backend/postman/Primetrade_API.postman_collection.json`
 
